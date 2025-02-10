@@ -64,3 +64,29 @@ button:active {
 img {
   mix-blend-mode: multiply;
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 200px;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    max-height: 200px;
+  }
+  to {
+    opacity: 0;
+    max-height: 0;
+  }
+}
+
+.title-fade-in {
+  animation: fadeIn 300ms ease-in-out forwards;
+}
