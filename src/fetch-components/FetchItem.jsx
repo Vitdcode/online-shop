@@ -14,6 +14,7 @@ export default function FetchItemsByCategory({ category, setCategory, products, 
       .then((response) => response.json())
       .then((products) => {
         setProducts(products);
+        console.log(products);
       })
       .catch((error) => {
         setError(error);
@@ -30,10 +31,16 @@ export default function FetchItemsByCategory({ category, setCategory, products, 
         {products.map((product) => (
           <div
             key={product.id}
-            className="w-[200px] flex flex-col justify-center shadow rounded-xl p-5 bg-gray-100 hover:shadow-xl hover:translate-y-2 hover:cursor-pointer transition duration-200"
+            className="w-[200px] flex flex-col justify-center shadow rounded-xl p-5 bg-gray-50 hover:shadow-xl hover:translate-y-2 hover:cursor-pointer transition duration-200"
           >
-            <img src={product.image} alt={product.title} className="mx-auto " />
-            <h2 className="overflow-hidden text-ellipsis whitespace-nowrap">{product.title}</h2>
+            <img src={product.image} alt={product.title} className="mx-auto mb-5" />
+            <h2 className="overflow-hidden text-ellipsis whitespace-nowrap mb-2">
+              {product.title}
+            </h2>
+            <div className="flex justify-between  rounded-xl p-2">
+              <h3>{product.price}$</h3>
+              <h3>⭐{product.rating.rate}</h3>
+            </div>
           </div>
         ))}
       </>
