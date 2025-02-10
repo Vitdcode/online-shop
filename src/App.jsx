@@ -7,7 +7,7 @@ function App() {
 
   return (
     <div className="h-screen flex">
-      <div className="flex flex-col justify-start border-r-2 border-gray-200 w-[600px]">
+      <div className="flex flex-col justify-start border-r-2 border-gray-200 w-[600px] gap-10">
         <h2 className="m-10">Category</h2>
         <button onClick={() => setCategory("electronics")}>Electronics</button>
         <button onClick={() => setCategory("jewelery")}>Jewelery</button>

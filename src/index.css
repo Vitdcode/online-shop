@@ -28,3 +28,35 @@ h2 {
   font-size: 1.5rem;
   font-weight: 500;
 }
+
+button {
+  width: 80%;
+  margin-inline: auto;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: 2px solid transparent;
+  border-radius: 50px;
+  background: linear-gradient(45deg, #ff6b6b, #f06595);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  outline: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background: linear-gradient(45deg, #f06595, #ff6b6b);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+button:focus {
+  border: 2px solid #f06595;
+}
+
+button:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
