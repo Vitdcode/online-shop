@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 
-export default function FetchItemsByCategory({ category, setCategory, products, setProducts }) {
+export default function FetchItemsByCategory() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [hoveredProduct, setHoveredProduct] = useState(null);
 
+  const { category, setCategory, products, setProducts } = useOutletContext();
+
   useEffect(() => {
     if (category === "default") {
+      console.log(category);
       setCategory("electronics");
       return;
     }
@@ -17,9 +20,11 @@ export default function FetchItemsByCategory({ category, setCategory, products, 
       .then((products) => {
         setProducts(products);
         console.log(products);
+        console.log("Fetched products:", products);
       })
       .catch((error) => {
         setError(error);
+        console.error("Fetch error:", error);
       })
       .finally(() => setLoading(false));
   }, [category]);

@@ -1,18 +1,26 @@
 import App from "../App";
-import ErrorPage from "../routing-components/ErrorPage";
-import ProductPage from "../routing-components/Product-page";
+import FetchItemsByCategory from "../fetch-components/FetchItem";
+import ErrorPage from "../pages/ErrorPage";
+import { createBrowserRouter } from "react-router-dom";
+import ProductPage from "../pages/Product-page";
 
-const routes = [
+const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <FetchItemsByCategory />,
+      },
+      {
+        path: "product-page",
+        element: <ProductPage />,
+        errorElement: <ErrorPage />,
+      },
+    ],
   },
-  {
-    path: "product-page",
-    element: <ProductPage />,
-    errorElement: <ErrorPage />,
-  },
-];
+]);
 
-export default routes;
+export default router;

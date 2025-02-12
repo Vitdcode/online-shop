@@ -1,5 +1,5 @@
 import { useState } from "react";
-import FetchItemsByCategory from "./fetch-components/FetchItem";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -15,12 +15,7 @@ function App() {
         <button onClick={() => setCategory(`women's clothing`)}>{"women's clothing"}</button>
       </div>
       <div className="flex items-center justify-center flex-wrap gap-20 w-full">
-        <FetchItemsByCategory
-          category={category}
-          setCategory={setCategory}
-          products={products}
-          setProducts={setProducts}
-        />
+        <Outlet context={{ products, setProducts, category, setCategory }} />
       </div>
     </div>
   );
