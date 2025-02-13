@@ -87,3 +87,7 @@ img {
 .title-fade-in {
   animation: fadeIn 300ms ease-in-out forwards;
 }
+
+.description-text {
+  background-color: #6b7a311e;
+}

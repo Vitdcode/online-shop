@@ -10,7 +10,7 @@ export default function ProductPage() {
 
   return (
     <div className="flex flex-col justify-center items-center gap-2 w-[60%]">
-      <img src={product.imageUrl} alt="Product Image" className="!h-[700px] !w-[650px]" />
+      <img src={product.imageUrl} alt="Product Image" className="!h-[700px] !w-[650px] mb-10" />
       <h1 className="text-2xl font-bold text-start w-full">{product.name}</h1>
       <h3 className="text-2xl font-bold  w-full text-left mb-3">
         <span className="text-3xl ">⭐</span> {product.rating} ({product.ratingCount} ratings)
@@ -49,7 +49,7 @@ const CollapsableText = ({ show, setShow, description }) => {
         transition={{ duration: 0.3, ease: "easeOut" }}
         style={{ overflow: "hidden" }}
       >
-        <h3 className="p-4 text-xl">{description}</h3>
+        <h3 className="p-4 text-xl description-text shadow rounded-xl">{description}</h3>
       </motion.div>
     </div>
   );
