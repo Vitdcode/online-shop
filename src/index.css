@@ -29,7 +29,7 @@ h2 {
   font-weight: 500;
 }
 
-button {
+.category-button {
   width: 80%;
   margin-inline: auto;
   padding: 12px 24px;
@@ -46,17 +46,17 @@ button {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-button:hover {
+.category-button:hover {
   background: linear-gradient(45deg, #f06595, #ff6b6b);
   transform: translateY(-4px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-button:focus {
+.category-button:focus {
   border: 2px solid #f06595;
 }
 
-button:active {
+.category-button:active {
   transform: translateY(2px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
