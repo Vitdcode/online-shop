@@ -17,7 +17,9 @@ export default function ProductPage() {
       </h3>
       <h3 className="text-2xl text-start w-full font-bold">${product.price}</h3>
       <CollapsableText show={show} setShow={setShow} description={product.description} />
-      <Link to="/">Go back</Link>
+      <Link to={"/"} className="absolute bottom-10 category-button !w-[200px] text-center mt-20">
+        Go Back
+      </Link>
     </div>
   );
 }
