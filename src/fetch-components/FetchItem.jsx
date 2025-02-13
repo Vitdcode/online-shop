@@ -11,7 +11,6 @@ export default function FetchItemsByCategory() {
 
   useEffect(() => {
     if (category === "default") {
-      console.log(category);
       setCategory("electronics");
       return;
     }
@@ -19,7 +18,6 @@ export default function FetchItemsByCategory() {
       .then((response) => response.json())
       .then((products) => {
         setProducts(products);
-        console.log(products);
         console.log("Fetched products:", products);
       })
       .catch((error) => {
@@ -36,7 +34,11 @@ export default function FetchItemsByCategory() {
     products && (
       <>
         {products.map((product) => (
-          <Link to="/product-page" key={product.id}>
+          <Link
+            to={`/product-page/${product.id}`}
+            key={product.id}
+            state={{ name: product.title, rating: product.rating.rate, imageUrl: product.image }}
+          >
             <div
               className="w-[200px] flex flex-col justify-center shadow rounded-xl p-5 bg-gray-50 hover:shadow-xl hover:translate-y-2 hover:cursor-pointer transition duration-200"
               onMouseEnter={() => setHoveredProduct(product.id)}

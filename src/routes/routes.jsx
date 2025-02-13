@@ -15,7 +15,7 @@ const router = createBrowserRouter([
         element: <FetchItemsByCategory />,
       },
       {
-        path: "product-page",
+        path: "product-page/:id",
         element: <ProductPage />,
         errorElement: <ErrorPage />,
       },
