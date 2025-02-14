@@ -10,7 +10,7 @@ export default function ProductPage() {
   const [show, setShow] = useState(false);
 
   return (
-    <div className="flex flex-col justify-center items-center gap-2 w-[60%]">
+    <div className="flex flex-col justify-center items-center gap-2 w-[60%] p-20">
       <img src={product.imageUrl} alt="Product Image" className="!h-[700px] !w-[650px] mb-10" />
       <h1 className="text-2xl font-bold text-start w-full">{product.name}</h1>
       <h3 className="text-2xl font-bold  w-full text-left mb-3">
@@ -19,7 +19,7 @@ export default function ProductPage() {
       <h3 className="text-2xl text-start w-full font-bold">${product.price}</h3>
       <CollapsableText show={show} setShow={setShow} description={product.description} />
       <Ratings product={product} />
-      <Link to={"/"} className="absolute bottom-10 category-button !w-[200px] text-center mt-20">
+      <Link to={"/"} className=" category-button !w-[200px] text-center mt-20">
         Go Back
       </Link>
     </div>
@@ -28,10 +28,10 @@ export default function ProductPage() {
 
 const CollapsableText = ({ show, setShow, description }) => {
   return (
-    <div className="flex flex-col items-start">
+    <div className="flex flex-col items-start w-full">
       {/* Toggle Button */}
       <button
-        className="my-3 text-xl p-3 rounded-xl transition-all duration-250 hover:bg-gray-100 cursor-pointer flex items-center"
+        className="my-3 text-xl p-3 rounded-xl transition-all duration-250 hover:bg-gray-100 cursor-pointer"
         onClick={() => setShow(!show)}
       >
         <motion.span

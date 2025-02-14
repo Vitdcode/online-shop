@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Link, useOutletContext } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function FetchItemsByCategory() {
   const [error, setError] = useState(null);
@@ -47,7 +48,7 @@ export default function FetchItemsByCategory() {
             }}
           >
             <div
-              className="w-[200px] flex flex-col justify-center shadow rounded-xl p-5 bg-gray-50 hover:shadow-xl hover:translate-y-2 hover:cursor-pointer transition duration-200"
+              className="w-[200px] flex flex-col justify-center shadow rounded-xl p-5 bg-gray-50 hover:shadow-xl hover:cursor-pointer"
               onMouseEnter={() => setHoveredProduct(product.id)}
               onMouseLeave={() => setHoveredProduct(null)}
             >
@@ -55,13 +56,26 @@ export default function FetchItemsByCategory() {
               <h2 className="overflow-hidden text-ellipsis whitespace-nowrap mb-2">
                 {product.title}
               </h2>
-              <div className="flex justify-between  rounded-xl p-2">
+
+              {/* Price and Rating */}
+              <div className="flex justify-between rounded-xl p-2">
                 <h3>{product.price}$</h3>
                 <h3>⭐{product.rating.rate}</h3>
               </div>
-              {hoveredProduct === product.id && (
-                <div className="title-fade-in">{product.title}</div>
-              )}
+              <AnimatePresence>
+                {hoveredProduct === product.id && (
+                  <motion.div
+                    initial={{ opacity: 0, maxHeight: "0" }}
+                    animate={{ opacity: 1, maxHeight: "250px" }}
+                    exit={{ opacity: 0, maxHeight: "0" }}
+                    transition={{ duration: 0.5 }}
+                    className="mt-2 text-gray-600"
+                    style={{ overflow: "hidden" }}
+                  >
+                    {product.title}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </Link>
         ))}

@@ -32,7 +32,7 @@ h2 {
 .category-button {
   width: 80%;
   margin-inline: auto;
-  padding: 12px 24px;
+  padding: 16px 24px;
   font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;
@@ -42,7 +42,7 @@ h2 {
   background: rgba(112, 172, 135, 0.911);
   color: white;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s;
   outline: none;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -50,6 +50,7 @@ h2 {
 .category-button:hover {
   background: rgba(112, 172, 135, 0.911);
   transform: translateY(-4px);
+  transform: scale(1.1);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
@@ -76,11 +77,9 @@ img {
 @keyframes fadeOut {
   from {
     opacity: 1;
-    max-height: 200px;
   }
   to {
     opacity: 0;
-    max-height: 0;
   }
 }
 
