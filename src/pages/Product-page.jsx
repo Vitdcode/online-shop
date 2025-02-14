@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import PropTypes from "prop-types";
-import { div, h1 } from "framer-motion/client";
 
 export default function ProductPage() {
   const location = useLocation();
@@ -153,4 +152,8 @@ const Ratings = ({ product }) => {
       </div>
     </div>
   );
+};
+
+Ratings.propTypes = {
+  product: PropTypes.object,
 };
