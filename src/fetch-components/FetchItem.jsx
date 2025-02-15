@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { Link, useOutletContext } from "react-router-dom";
+import { Link, useLocation, useOutletContext } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import Cart from "../pages/Cart";
 
 export default function FetchItemsByCategory() {
   const [error, setError] = useState(null);
@@ -10,22 +9,14 @@ export default function FetchItemsByCategory() {
   const [hoveredProduct, setHoveredProduct] = useState(null);
   const randomBoolean = () => Math.random() < 0.5;
 
-  /*   const randomStock = () => {
-    const stockArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    const randomStockIndex = Math.floor(Math.random() * stockArray.length);
-    return stockArray[randomStockIndex];
-  }; */
-
   const randomStock = () => Math.floor(Math.random() * 11);
 
-  const { category, setCategory, products, setProducts } = useOutletContext();
+  const location = useLocation();
+  const cat = location.state;
+  const { products, setProducts } = useOutletContext();
 
   useEffect(() => {
-    if (category === "default") {
-      setCategory("electronics");
-      return;
-    }
-    fetch(`https://fakestoreapi.com/products/category/${category}`, { mode: "cors" })
+    fetch(`https://fakestoreapi.com/products/category/${cat}`, { mode: "cors" })
       .then((response) => response.json())
       .then((products) => {
         setProducts(
@@ -42,7 +33,7 @@ export default function FetchItemsByCategory() {
         console.error("Fetch error:", error);
       })
       .finally(() => setLoading(false));
-  }, [category]);
+  }, [cat]);
 
   if (loading) return <h1>...Loading Page</h1>;
   if (error) return <h1>The Page encountered an error, please try again later</h1>;

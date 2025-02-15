@@ -4,7 +4,7 @@ import { GoHeart } from "react-icons/go";
 import { MdDeleteOutline } from "react-icons/md";
 
 const Cart = () => {
-  const { cart, setCart } = useOutletContext();
+  const { cart, setCart, cartCount, setCartcount } = useOutletContext();
   console.log(cart);
 
   const handleQuantityIncrease = (id, stock, quantity) => {
@@ -21,6 +21,13 @@ const Cart = () => {
     );
   };
 
+  const handleDelete = (id) => {
+    setCart(cart.filter((item) => item.id != id));
+    setCartcount(cartCount - 1);
+  };
+
+  if (cartCount === 0) return <h1>No Items in the Cart yet</h1>;
+
   return (
     <div className="flex flex-col items-center  gap-10 w-full">
       {cart.map((item) => (
@@ -28,7 +35,7 @@ const Cart = () => {
           key={item.id}
           className="cart-item-wrapper gap-15 border-2 border-gray-100 rounded-xl p-2 w-[60%]"
         >
-          <div className="flex flex-col gap-2 items-center text-lg">
+          <div className="flex flex-col gap-2 items-center text-lg font-bold">
             <img src={item.imageUrl} alt="Image of the product" />
             <span className="p-2 bg-lime-100 rounded-xl">In stock: {item.inStock}</span>
           </div>
@@ -52,14 +59,17 @@ const Cart = () => {
             </div>
           </div>
           <div className="flex items-start gap-4 h-full mt-4 mr-4">
-            <button className="text-4xl">
+            <button
+              onClick={() => handleDelete(item.id)}
+              className="text-4xl p-2 hover:bg-gray-100 active:bg-gray-200 hover:cursor-pointer rounded-2xl "
+            >
               <MdDeleteOutline />
             </button>
-            <button className="text-4xl">{<GoHeart />}</button>
+            <button className="text-4xl p-2">{<GoHeart />}</button>
           </div>
         </div>
       ))}
-      <Link to={"/"} className="category-button !w-[200px]">
+      <Link to={"/"} className="category-button !w-[200px] text-center">
         Go Back
       </Link>
     </div>
