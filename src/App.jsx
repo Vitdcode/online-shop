@@ -23,7 +23,7 @@ function App() {
         <button className="category-button" onClick={() => setCategory(`women's clothing`)}>
           {"Women's clothing"}
         </button>
-        <Link to={"/cart-page"} className="category-button mt-20" state={cart}>
+        <Link to={"/cart-page"} className="category-button mt-20">
           🛒 Cart ({cartCount} items)
         </Link>
       </div>
