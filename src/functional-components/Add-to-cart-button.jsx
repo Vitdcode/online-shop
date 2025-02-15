@@ -9,14 +9,13 @@ const AddToCartButton = ({ product }) => {
     setCart([
       ...cart,
       {
-        quantitiy: 1,
+        quantity: 1,
         imageUrl: product.imageUrl,
         price: product.price,
         title: product.name,
+        id: product.id,
       },
     ]);
-    console.log(product);
-    console.log(cart);
   };
 
   return (

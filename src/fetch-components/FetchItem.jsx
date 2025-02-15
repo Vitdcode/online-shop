@@ -9,7 +9,7 @@ export default function FetchItemsByCategory() {
   const [loading, setLoading] = useState(true);
   const [hoveredProduct, setHoveredProduct] = useState(null);
 
-  const { category, setCategory, products, setProducts, cartPageActive } = useOutletContext();
+  const { category, setCategory, products, setProducts } = useOutletContext();
 
   useEffect(() => {
     if (category === "default") {
@@ -46,6 +46,7 @@ export default function FetchItemsByCategory() {
               price: product.price,
               ratingCount: product.rating.count,
               description: product.description,
+              id: product.id,
             }}
           >
             <div

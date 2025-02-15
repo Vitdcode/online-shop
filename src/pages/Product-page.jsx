@@ -66,7 +66,6 @@ CollapsableText.propTypes = {
 };
 
 const Ratings = ({ product }) => {
-  console.log(product);
   const ratings = [
     {
       id: 1,
