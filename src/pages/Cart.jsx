@@ -17,7 +17,7 @@ const Cart = () => {
   };
 
   const handleQuantityDecrease = (id, quantity) => {
-    if (quantity <= 0) return;
+    if (quantity <= 1) return;
     setCart((prevCart) =>
       prevCart.map((item) => (item.id === id ? { ...item, quantity: item.quantity - 1 } : item))
     );
@@ -31,13 +31,23 @@ const Cart = () => {
           className="cart-item-wrapper  gap-15 border-2 border-gray-100 rounded-xl p-2 max-w-[80%]"
         >
           <img src={item.imageUrl} alt="Image of the product" />
-          <div className="flex flex-col font-bold gap-2 text-2xl">
+          <div className="flex flex-col font-bold gap-4 text-2xl">
             <h1>{item.title}</h1>
             <span>${item.price}</span>
             <div className="flex gap-2">
-              <button onClick={() => handleQuantityDecrease(item.id, item.quantity)}>-</button>
+              <button
+                onClick={() => handleQuantityDecrease(item.id, item.quantity)}
+                className="p-3 rounded-lg hover:bg-red-100 hover:cursor-pointer active:bg-red-200"
+              >
+                -
+              </button>
               <span className="p-2 bg-gray-100 rounded-lg">{item.quantity}</span>
-              <button onClick={() => handleQuantityIncrease(item.id)}>+</button>
+              <button
+                onClick={() => handleQuantityIncrease(item.id)}
+                className="p-2 rounded-lg hover:bg-teal-100 hover:cursor-pointer active:bg-teal-200"
+              >
+                +
+              </button>
             </div>
           </div>
           <div className="flex items-start gap-4 min-h-[120px]">
