@@ -2,22 +2,31 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import PropTypes from "prop-types";
-import CartButton from "../functional-components/Add-to-cart-button";
 import AddToCartButton from "../functional-components/Add-to-cart-button";
+import ShippingInfo from "../functional-components/Shipping-info";
+import StockInfo from "../functional-components/Stock-info";
 
 export default function ProductPage() {
   const location = useLocation();
   const product = location.state;
   const [show, setShow] = useState(false);
+  console.log(product);
 
   return (
     <div className="flex flex-col justify-center items-center gap-2 w-[60%] p-20">
       <img src={product.imageUrl} alt="Product Image" className="!h-[700px] !w-[650px] mb-10" />
-      <h1 className="text-2xl font-bold text-start w-full">{product.name}</h1>
-      <h3 className="text-2xl font-bold  w-full text-left mb-3">
-        <span className="text-3xl ">⭐</span> {product.rating} ({product.ratingCount} ratings)
-      </h3>
-      <h3 className="text-2xl text-start w-full font-bold">${product.price}</h3>
+      <div className="bg-gray-100 flex flex-col justify-center items-center gap-4 w-full p-4 rounded-2xl">
+        <h1 className="text-2xl font-bold text-start w-full">{product.name}</h1>
+        <h3 className="text-2xl font-bold  w-full text-left mb-3">
+          <span className="text-3xl ">⭐</span> {product.rating} ({product.ratingCount} ratings)
+        </h3>
+        <h3 className="text-2xl text-start w-full font-bold">${product.price}</h3>
+        <div className="flex items-center w-full gap-10 p-4 text-2xl ">
+          <ShippingInfo isFreeShipping={product.freeShipping} />
+          <span>•</span>
+          <StockInfo isInstock={product.inStock} />
+        </div>
+      </div>
       <AddToCartButton product={product} />
       <CollapsableText show={show} setShow={setShow} description={product.description} />
       <Ratings product={product} />

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
+import { FaCartArrowDown } from "react-icons/fa";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -23,8 +24,11 @@ function App() {
         <button className="category-button" onClick={() => setCategory(`women's clothing`)}>
           {"Women's clothing"}
         </button>
-        <Link to={"/cart-page"} className="category-button mt-20">
-          🛒 Cart ({cartCount} items)
+        <Link
+          to={"/cart-page"}
+          className="category-button flex justify-center items-center gap-3 mt-20"
+        >
+          <FaCartArrowDown /> Cart ({cartCount} items)
         </Link>
       </div>
       <div className="flex items-center justify-center flex-wrap gap-20 w-full">

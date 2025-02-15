@@ -8,6 +8,15 @@ export default function FetchItemsByCategory() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [hoveredProduct, setHoveredProduct] = useState(null);
+  const randomBoolean = () => Math.random() < 0.5;
+
+  /*   const randomStock = () => {
+    const stockArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const randomStockIndex = Math.floor(Math.random() * stockArray.length);
+    return stockArray[randomStockIndex];
+  }; */
+
+  const randomStock = () => Math.floor(Math.random() * 11);
 
   const { category, setCategory, products, setProducts } = useOutletContext();
 
@@ -19,7 +28,13 @@ export default function FetchItemsByCategory() {
     fetch(`https://fakestoreapi.com/products/category/${category}`, { mode: "cors" })
       .then((response) => response.json())
       .then((products) => {
-        setProducts(products);
+        setProducts(
+          products.map((product) => ({
+            ...product,
+            freeShipping: randomBoolean(),
+            inStock: randomStock(),
+          }))
+        );
         console.log("Fetched products:", products);
       })
       .catch((error) => {
@@ -47,6 +62,8 @@ export default function FetchItemsByCategory() {
               ratingCount: product.rating.count,
               description: product.description,
               id: product.id,
+              freeShipping: product.freeShipping,
+              inStock: product.inStock,
             }}
           >
             <div
