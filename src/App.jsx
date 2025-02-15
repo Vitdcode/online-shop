@@ -4,6 +4,8 @@ import { Outlet } from "react-router-dom";
 function App() {
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState("default");
+  const [cartCount, setCartcount] = useState(0);
+  const [cart, setCart] = useState([{ count: 0 }]);
 
   return (
     <div className="h-screen flex">
@@ -23,7 +25,18 @@ function App() {
         </button>
       </div>
       <div className="flex items-center justify-center flex-wrap gap-20 w-full">
-        <Outlet context={{ products, setProducts, category, setCategory }} />
+        <Outlet
+          context={{
+            products,
+            setProducts,
+            category,
+            setCategory,
+            cart,
+            setCart,
+            cartCount,
+            setCartcount,
+          }}
+        />
       </div>
     </div>
   );

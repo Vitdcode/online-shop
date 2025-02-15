@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import PropTypes from "prop-types";
+import CartButton from "../functional-components/Add-to-cart-button";
+import AddToCartButton from "../functional-components/Add-to-cart-button";
 
 export default function ProductPage() {
   const location = useLocation();
@@ -16,6 +18,7 @@ export default function ProductPage() {
         <span className="text-3xl ">⭐</span> {product.rating} ({product.ratingCount} ratings)
       </h3>
       <h3 className="text-2xl text-start w-full font-bold">${product.price}</h3>
+      <AddToCartButton product={product} />
       <CollapsableText show={show} setShow={setShow} description={product.description} />
       <Ratings product={product} />
       <Link to={"/"} className=" category-button !w-[200px] text-center mt-20">
