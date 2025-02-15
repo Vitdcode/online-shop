@@ -5,12 +5,10 @@ import { MdDeleteOutline } from "react-icons/md";
 
 const Cart = () => {
   const { cart, setCart } = useOutletContext();
-  /*   const location = useLocation();
-  const cart = location.state; */
   console.log(cart);
 
-  const handleQuantityIncrease = (id) => {
-    console.log(id);
+  const handleQuantityIncrease = (id, stock, quantity) => {
+    if (quantity >= stock) return;
     setCart((prevCart) =>
       prevCart.map((item) => (item.id === id ? { ...item, quantity: item.quantity + 1 } : item))
     );
@@ -24,13 +22,16 @@ const Cart = () => {
   };
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col items-center  gap-10 w-full">
       {cart.map((item) => (
         <div
           key={item.id}
-          className="cart-item-wrapper  gap-15 border-2 border-gray-100 rounded-xl p-2 max-w-[80%]"
+          className="cart-item-wrapper gap-15 border-2 border-gray-100 rounded-xl p-2 w-[60%]"
         >
-          <img src={item.imageUrl} alt="Image of the product" />
+          <div className="flex flex-col gap-2 items-center text-lg">
+            <img src={item.imageUrl} alt="Image of the product" />
+            <span className="p-2 bg-lime-100 rounded-xl">In stock: {item.inStock}</span>
+          </div>
           <div className="flex flex-col font-bold gap-4 text-2xl">
             <h1>{item.title}</h1>
             <span>${item.price}</span>
@@ -43,14 +44,14 @@ const Cart = () => {
               </button>
               <span className="p-2 bg-gray-100 rounded-lg">{item.quantity}</span>
               <button
-                onClick={() => handleQuantityIncrease(item.id)}
+                onClick={() => handleQuantityIncrease(item.id, item.inStock, item.quantity)}
                 className="p-2 rounded-lg hover:bg-teal-100 hover:cursor-pointer active:bg-teal-200"
               >
                 +
               </button>
             </div>
           </div>
-          <div className="flex items-start gap-4 min-h-[120px]">
+          <div className="flex items-start gap-4 h-full mt-4 mr-4">
             <button className="text-4xl">
               <MdDeleteOutline />
             </button>
