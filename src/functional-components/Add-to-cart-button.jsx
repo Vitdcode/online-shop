@@ -1,4 +1,3 @@
-import { button } from "framer-motion/client";
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 
@@ -7,7 +6,17 @@ const AddToCartButton = ({ product }) => {
 
   const handleAddToCart = () => {
     setCartcount(cartCount + 1);
-    console.log(cartCount);
+    setCart([
+      ...cart,
+      {
+        quantitiy: 1,
+        imageUrl: product.imageUrl,
+        price: product.price,
+        title: product.name,
+      },
+    ]);
+    console.log(product);
+    console.log(cart);
   };
 
   return (

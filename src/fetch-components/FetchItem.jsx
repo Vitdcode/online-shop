@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Link, useOutletContext } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import Cart from "../pages/Cart";
 
 export default function FetchItemsByCategory() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [hoveredProduct, setHoveredProduct] = useState(null);
 
-  const { category, setCategory, products, setProducts } = useOutletContext();
+  const { category, setCategory, products, setProducts, cartPageActive } = useOutletContext();
 
   useEffect(() => {
     if (category === "default") {

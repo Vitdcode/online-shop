@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
+import Cart from "./pages/Cart";
 
 function App() {
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState("default");
   const [cartCount, setCartcount] = useState(0);
-  const [cart, setCart] = useState([{ count: 0 }]);
+  const [cart, setCart] = useState([]);
 
   return (
     <div className="h-screen flex">
@@ -21,9 +22,11 @@ function App() {
           {"Men's clothing"}
         </button>
         <button className="category-button" onClick={() => setCategory(`women's clothing`)}>
-          {"women's clothing"}
+          {"Women's clothing"}
         </button>
-        <button className="category-button mt-20">🛒 Cart ({cartCount} items)</button>
+        <Link to={"/cart-page"} className="category-button mt-20" state={cart}>
+          🛒 Cart ({cartCount} items)
+        </Link>
       </div>
       <div className="flex items-center justify-center flex-wrap gap-20 w-full">
         <Outlet
