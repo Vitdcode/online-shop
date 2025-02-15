@@ -23,6 +23,7 @@ function App() {
         <button className="category-button" onClick={() => setCategory(`women's clothing`)}>
           {"women's clothing"}
         </button>
+        <button className="category-button mt-20">🛒 Cart ({cartCount} items)</button>
       </div>
       <div className="flex items-center justify-center flex-wrap gap-20 w-full">
         <Outlet
