@@ -24,9 +24,9 @@ const Wishlist = () => {
           >
             <MdDeleteOutline />
           </button>
-          <img src={item.imageUrl} alt="Image of the Product" className="!h-[200px] !w-[200px]" />
+          <img src={item.image} alt="Image of the Product" className="!h-[200px] !w-[200px]" />
           <div className="flex flex-col gap-5 text-2xl font-bold  p-4 rounded-2xl">
-            <span>{item.name}</span>
+            <span>{item.title}</span>
             <span>${item.price}</span>
             {item.inStock >= 1 ? (
               <span className="w-fit p-2 rounded-2xl bg-lime-100"> In stock: {item.inStock}</span>

@@ -6,11 +6,12 @@ import { FaStar } from "react-icons/fa";
 import AddToCartButton from "../functional-components/Add-to-cart-button";
 import StockInfo from "../functional-components/Stock-info";
 import ShippingInfo from "../functional-components/Shipping-info";
+import AddToWishList from "../functional-components/Add-to-wishlist";
+import { div } from "framer-motion/client";
 
 export default function FetchItemsByCategory() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [hoveredProduct, setHoveredProduct] = useState(null);
   const randomBoolean = () => Math.random() < 0.5;
 
   const randomStock = () => Math.floor(Math.random() * 11);
@@ -28,6 +29,7 @@ export default function FetchItemsByCategory() {
             ...product,
             freeShipping: randomBoolean(),
             inStock: randomStock(),
+            isFavorite: false,
           }))
         );
         console.log("Fetched products:", products);
@@ -52,23 +54,22 @@ export default function FetchItemsByCategory() {
             to={`/product-page/${product.id}`}
             key={product.id}
             state={{
-              name: product.title,
+              title: product.title,
               rating: product.rating.rate,
-              imageUrl: product.image,
+              image: product.image,
               price: product.price,
               ratingCount: product.rating.count,
               description: product.description,
               id: product.id,
               freeShipping: product.freeShipping,
               inStock: product.inStock,
+              isFavorite: product.isFavorite,
             }}
-            className="max-w-[1100px]"
+            className="w-[1100px] ml-auto mr-auto"
           >
             <div
               className="flex justify-start items-center  gap-10 shadow rounded-xl p-5 
               bg-gray-50 hover:shadow-xl hover:cursor-pointer transition-transform duration-200 hover:scale-101"
-              onMouseEnter={() => setHoveredProduct(product.id)}
-              onMouseLeave={() => setHoveredProduct(null)}
             >
               <img src={product.image} alt={product.title} className="" />
               <div className="flex flex-col  gap-3 rounded-xl font-bold  ">
@@ -93,6 +94,7 @@ export default function FetchItemsByCategory() {
                   />
                 </div>
               </div>
+              <AddToWishList product={product} />
             </div>
           </Link>
         ))}

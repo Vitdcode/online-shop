@@ -6,6 +6,7 @@ import AddToCartButton from "../functional-components/Add-to-cart-button";
 import ShippingInfo from "../functional-components/Shipping-info";
 import StockInfo from "../functional-components/Stock-info";
 import AddToWishList from "../functional-components/Add-to-wishlist";
+import { FaStar } from "react-icons/fa";
 
 export default function ProductPage() {
   const location = useLocation();
@@ -15,13 +16,16 @@ export default function ProductPage() {
 
   return (
     <div className="flex flex-col justify-center items-center gap-2 w-[60%] p-20">
-      <img src={product.imageUrl} alt="Product Image" className="!h-[700px] !w-[650px] mb-10" />
+      <img src={product.image} alt="Product Image" className="!h-[700px] !w-[650px] mb-10" />
       <div className="bg-gray-100 flex flex-col justify-center items-center gap-4 w-full p-4 rounded-2xl">
-        <h1 className="text-2xl font-bold text-start w-full">{product.name}</h1>
-        <h3 className="text-2xl font-bold  w-full text-left mb-3">
-          <span className="text-3xl ">⭐</span> {product.rating} ({product.ratingCount} ratings)
+        <h1 className="text-2xl font-bold text-start w-full ml-5">{product.title}</h1>
+        <h3 className="flex gap-2 text-2xl font-bold  w-full text-left mb-3 ml-5">
+          <span className="text-3xl ">
+            <FaStar color="rgb(222, 121, 33)" />
+          </span>{" "}
+          {product.rating} ({product.ratingCount} ratings)
         </h3>
-        <h3 className="text-2xl text-start w-full font-bold">${product.price}</h3>
+        <h3 className="text-2xl text-start w-full font-bold ml-5">${product.price}</h3>
         <div className="flex items-center w-full gap-10 p-4 text-2xl ">
           <ShippingInfo isFreeShipping={product.freeShipping} />
           <span>•</span>

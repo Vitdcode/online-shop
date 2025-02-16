@@ -36,7 +36,7 @@ const Cart = () => {
           className="cart-item-wrapper gap-15 border-2 border-gray-100 rounded-xl p-2 w-[60%] shadow"
         >
           <div className="flex flex-col gap-2 items-center text-lg font-bold">
-            <img src={item.imageUrl} alt="Image of the product" />
+            <img src={item.image} alt="Image of the product" />
             <span className="p-2 bg-lime-100 rounded-xl">In stock: {item.inStock}</span>
           </div>
           <div className="flex flex-col font-bold gap-4 text-2xl">

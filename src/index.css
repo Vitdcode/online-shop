@@ -30,7 +30,11 @@ h2 {
 }
 
 .category-button {
-  width: 80%;
+  display: flex;
+  align-items: center;
+  /*   justify-content: center; */
+  gap: 10px;
+  width: 70%;
   margin-inline: auto;
   padding: 16px 24px;
   font-size: 1.4rem;
@@ -110,6 +114,12 @@ img {
   font-size: 1.3rem;
   margin-right: auto;
   margin-block: 0;
+  transition: 200ms;
+}
+
+#add-to-cart-all-products-in-stock:active {
+  background-color: rgba(166, 192, 179, 0.938);
+  transform: scale(0.9);
 }
 
 #add-to-cart-all-products-no-stock {
