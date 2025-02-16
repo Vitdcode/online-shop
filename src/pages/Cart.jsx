@@ -29,11 +29,11 @@ const Cart = () => {
   if (cartCount === 0) return <h1>No Items in the Cart yet</h1>;
 
   return (
-    <div className="flex flex-col items-center  gap-10 w-full">
+    <div className="flex flex-col items-center gap-10 w-full">
       {cart.map((item) => (
         <div
           key={item.id}
-          className="cart-item-wrapper gap-15 border-2 border-gray-100 rounded-xl p-2 w-[60%]"
+          className="cart-item-wrapper gap-15 border-2 border-gray-100 rounded-xl p-2 w-[60%] shadow"
         >
           <div className="flex flex-col gap-2 items-center text-lg font-bold">
             <img src={item.imageUrl} alt="Image of the product" />
@@ -69,9 +69,6 @@ const Cart = () => {
           </div>
         </div>
       ))}
-      <Link to={"/"} className="category-button !w-[200px] text-center">
-        Go Back
-      </Link>
     </div>
   );
 };

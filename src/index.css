@@ -37,19 +37,20 @@ h2 {
   text-align: center;
   text-transform: capitalize;
   font-weight: 600;
-  border: 2px solid transparent;
-  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.103);
+  border-radius: 20px;
+  color: black !important;
   /*   background: linear-gradient(45deg, #ff6b6b, #f06595); */
-  background: rgba(112, 172, 135, 0.911);
+  background: rgba(255, 255, 255, 0.89);
   color: white;
   cursor: pointer;
   transition: all 0.2s;
   outline: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.288);
 }
 
 .category-button:hover {
-  background: rgba(112, 172, 135, 0.911);
+  background: rgba(255, 255, 255, 0.904);
   transform: translateY(-4px);
   transform: scale(1.1);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
