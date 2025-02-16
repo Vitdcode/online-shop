@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { FaCartArrowDown } from "react-icons/fa";
 
-const AddToCartButton = ({ product }) => {
+const AddToCartButton = ({ product, idNameStock, idNameNoStock }) => {
   const { cart, setCart, cartCount, setCartcount } = useOutletContext();
 
   const handleAddToCart = () => {
@@ -25,6 +25,7 @@ const AddToCartButton = ({ product }) => {
     <div className="flex justify-center w-full">
       {product.inStock ? (
         <button
+          id={idNameStock}
           onClick={() => handleAddToCart()}
           className=" bg-teal-500 text-white  rounded-xl p-4 w-[80%] mt-10 mb-10 text-3xl flex justify-center items-center gap-3 
     hover:shadow-2xl hover:cursor-pointer hover:translate-y-1 transition  duration-200 active:bg-teal-400"
@@ -32,12 +33,7 @@ const AddToCartButton = ({ product }) => {
           <FaCartArrowDown /> Add to Cart
         </button>
       ) : (
-        <span
-          className="flex justify-center items-center gap-3 bg-gray-500 text-white rounded-xl p-4 mt-10 mb-10 text-3xl 
-        hover:shadow-2xl hover:cursor-pointer hover:translate-y-1 transition  duration-200 active:bg-teal-400"
-        >
-          Out of Stock
-        </span>
+        ""
       )}
     </div>
   );

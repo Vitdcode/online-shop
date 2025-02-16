@@ -4,7 +4,10 @@ const ShippingInfo = ({ isFreeShipping }) => {
   return (
     <div>
       {isFreeShipping ? (
-        <span className="flex gap-5 items-center text-teal-300">
+        <span
+          className="flex gap-5 items-center text-teal-300"
+          style={{ color: "rgb(110, 198, 154)" }}
+        >
           {<LiaShippingFastSolid className="text-3xl text-black" />} Free shipping
         </span>
       ) : (

@@ -102,3 +102,16 @@ img {
   grid-template-columns: 0.2fr 1fr 0.1fr;
   align-items: center;
 }
+
+#add-to-cart-all-products-in-stock,
+#add-to-cart-all-products-no-stock {
+  background-color: rgba(100, 194, 147, 0.938);
+  width: 180px;
+  font-size: 1.3rem;
+  margin-right: auto;
+  margin-block: 0;
+}
+
+#add-to-cart-all-products-no-stock {
+  background-color: rgba(87, 87, 87, 0.938);
+}

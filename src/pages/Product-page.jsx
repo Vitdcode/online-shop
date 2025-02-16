@@ -5,21 +5,13 @@ import PropTypes from "prop-types";
 import AddToCartButton from "../functional-components/Add-to-cart-button";
 import ShippingInfo from "../functional-components/Shipping-info";
 import StockInfo from "../functional-components/Stock-info";
-import { GoHeart } from "react-icons/go";
-import { MdOutlineFavorite } from "react-icons/md";
+import AddToWishList from "../functional-components/Add-to-wishlist";
 
 export default function ProductPage() {
   const location = useLocation();
   const product = location.state;
   const [show, setShow] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(false);
-  const { wishlist, setWishlist } = useOutletContext();
   console.log(product);
-
-  const handleFavoriteBtn = () => {
-    setIsFavorite(!isFavorite);
-    setWishlist([...wishlist, product]);
-  };
 
   return (
     <div className="flex flex-col justify-center items-center gap-2 w-[60%] p-20">
@@ -34,20 +26,12 @@ export default function ProductPage() {
           <ShippingInfo isFreeShipping={product.freeShipping} />
           <span>•</span>
           <StockInfo isInstock={product.inStock} />
-          <button
-            onClick={() => handleFavoriteBtn()}
-            className="text-4xl ml-auto p-2 hover:cursor-pointer rounded-2xl hover:bg-red-200"
-          >
-            {isFavorite ? <MdOutlineFavorite color="#FF6B6B" /> : <GoHeart />}
-          </button>
+          <AddToWishList product={product} />
         </div>
       </div>
       <AddToCartButton product={product} />
       <CollapsableText show={show} setShow={setShow} description={product.description} />
       <Ratings product={product} />
-      <Link to={"/"} className=" category-button !w-[200px] text-center mt-20">
-        Go Back
-      </Link>
     </div>
   );
 }

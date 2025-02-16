@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Link, useLocation, useOutletContext } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import { FaStar } from "react-icons/fa";
+import AddToCartButton from "../functional-components/Add-to-cart-button";
+import StockInfo from "../functional-components/Stock-info";
+import ShippingInfo from "../functional-components/Shipping-info";
 
 export default function FetchItemsByCategory() {
   const [error, setError] = useState(null);
@@ -40,7 +44,9 @@ export default function FetchItemsByCategory() {
 
   return (
     products && (
-      <>
+      <div className="flex flex-col w-full ml-25 gap-15 p-30">
+        <h1 className="capitalize text-3xl font-bold">{cat}</h1>
+        <hr className="opacity-50 border-gray-400" />
         {products.map((product) => (
           <Link
             to={`/product-page/${product.id}`}
@@ -56,40 +62,41 @@ export default function FetchItemsByCategory() {
               freeShipping: product.freeShipping,
               inStock: product.inStock,
             }}
+            className="max-w-[1100px]"
           >
             <div
-              className="w-[200px] flex flex-col justify-center shadow rounded-xl p-5 bg-gray-50 hover:shadow-xl hover:cursor-pointer"
+              className="flex justify-start items-center  gap-10 shadow rounded-xl p-5 
+              bg-gray-50 hover:shadow-xl hover:cursor-pointer transition-transform duration-200 hover:scale-101"
               onMouseEnter={() => setHoveredProduct(product.id)}
               onMouseLeave={() => setHoveredProduct(null)}
             >
-              <img src={product.image} alt={product.title} className="mx-auto mb-5" />
-              <h2 className="overflow-hidden text-ellipsis whitespace-nowrap mb-2">
-                {product.title}
-              </h2>
+              <img src={product.image} alt={product.title} className="" />
+              <div className="flex flex-col  gap-3 rounded-xl font-bold  ">
+                <h2>{product.title}</h2>
 
-              {/* Price and Rating */}
-              <div className="flex justify-between rounded-xl p-2">
                 <h3>{product.price}$</h3>
-                <h3>⭐{product.rating.rate}</h3>
+                <h3 className="flex items-center gap-1">
+                  <FaStar color="rgb(222, 121, 33)" />
+                  {product.rating.rate}
+                </h3>
+                <div className="flex items-center gap-5 p-2  rounded-lg w-fit">
+                  <StockInfo isInstock={product.inStock} />
+                  <span>•</span>
+                  <ShippingInfo isFreeShipping={product.freeShipping} />
+                </div>
+
+                <div>
+                  <AddToCartButton
+                    product={product}
+                    idNameStock={"add-to-cart-all-products-in-stock"}
+                    idNameNoStock={"add-to-cart-all-products-no-stock"}
+                  />
+                </div>
               </div>
-              <AnimatePresence>
-                {hoveredProduct === product.id && (
-                  <motion.div
-                    initial={{ opacity: 0, maxHeight: "0" }}
-                    animate={{ opacity: 1, maxHeight: "250px" }}
-                    exit={{ opacity: 0, maxHeight: "0" }}
-                    transition={{ duration: 0.5 }}
-                    className="mt-2 text-gray-600"
-                    style={{ overflow: "hidden" }}
-                  >
-                    {product.title}
-                  </motion.div>
-                )}
-              </AnimatePresence>
             </div>
           </Link>
         ))}
-      </>
+      </div>
     )
   );
 }
