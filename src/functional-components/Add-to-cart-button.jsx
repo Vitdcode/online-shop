@@ -8,18 +8,28 @@ const AddToCartButton = ({ product, idNameStock, idNameNoStock }) => {
   const handleAddToCart = (e) => {
     e.preventDefault();
     setCartcount(cartCount + 1);
-    setCart([
-      ...cart,
-      {
-        quantity: 1,
-        image: product.image,
-        price: product.price,
-        title: product.title,
-        id: product.id,
-        freeShipping: product.freeShipping,
-        inStock: product.inStock,
-      },
-    ]);
+    const idExistsIndex = cart.findIndex((item) => item.id === product.id);
+
+    if (idExistsIndex != -1) {
+      return setCart((prevCart) =>
+        prevCart.map((item) =>
+          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        )
+      );
+    } else {
+      setCart([
+        ...cart,
+        {
+          quantity: 1,
+          image: product.image,
+          price: product.price,
+          title: product.title,
+          id: product.id,
+          freeShipping: product.freeShipping,
+          inStock: product.inStock,
+        },
+      ]);
+    }
   };
 
   return (

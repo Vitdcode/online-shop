@@ -2,6 +2,7 @@ import { div, h1 } from "framer-motion/client";
 import { Link, useLocation, useOutletContext } from "react-router-dom";
 import { GoHeart } from "react-icons/go";
 import { MdDeleteOutline } from "react-icons/md";
+import AddToWishList from "../functional-components/Add-to-wishlist";
 
 const Cart = () => {
   const { cart, setCart, cartCount, setCartcount } = useOutletContext();
@@ -65,7 +66,7 @@ const Cart = () => {
             >
               <MdDeleteOutline />
             </button>
-            <button className="text-4xl p-2">{<GoHeart />}</button>
+            <AddToWishList product={item} />
           </div>
         </div>
       ))}
