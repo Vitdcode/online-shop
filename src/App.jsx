@@ -3,6 +3,9 @@ import { Link, Outlet } from "react-router-dom";
 import { FaCartArrowDown, FaLaptop, FaTshirt } from "react-icons/fa";
 import { MdFavorite } from "react-icons/md";
 import { GiDoorRingHandle, GiGemChain, GiLargeDress } from "react-icons/gi";
+import logo from "./images/logo.png";
+import logoText from "./images/logo-text.png";
+
 function App() {
   const [products, setProducts] = useState([]);
   const categories = ["electronics", "jewelery", `men's clothing`, `women's clothing`];
@@ -19,9 +22,18 @@ function App() {
 
   return (
     <div className="flex">
-      <div className=" sticky top-0 h-screen flex flex-col justify-between border-r-2 border-gray-200 w-[600px] gap-10 bg-slate-600">
+      <div className=" sticky top-0 h-screen flex flex-col justify-between border-r-2 border-gray-200 w-[600px] gap-10 bg-stone-100">
         <div className=" flex flex-col gap-10">
-          <h2 className="m-10 text-white">Category</h2>
+          <div className="!w-full !h-[100px]  bg-lime-100 shadow-2xl  relative">
+            <img src={logoText} alt="Logo Text" className="!w-[300px] ml-auto mr-auto z-10 " />
+            <img
+              src={logo}
+              alt="Logo of the shop"
+              className="!w-[110px] !h-[110px] ml-auto mr-auto absolute top-5 right-0 rotate-350 "
+            />
+          </div>
+          <h2 className="m-10 text-gray-700 underline">Category</h2>
+
           {categories.map((cat, index) => (
             <Link to={`/category/${cat}`} key={index} state={cat} className="category-button">
               <>

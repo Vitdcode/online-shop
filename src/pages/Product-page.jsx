@@ -1,5 +1,5 @@
-import { useContext, useState } from "react";
-import { Link, useLocation, useOutletContext } from "react-router-dom";
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import PropTypes from "prop-types";
 import AddToCartButton from "../functional-components/Add-to-cart-button";
@@ -8,11 +8,16 @@ import StockInfo from "../functional-components/Stock-info";
 import AddToWishList from "../functional-components/Add-to-wishlist";
 import { FaStar } from "react-icons/fa";
 
+import profilePic1 from "../images/profile-images/profile-pic1.png";
+import profilePic2 from "../images/profile-images/profile-pic2.png";
+import profilePic3 from "../images/profile-images/profile-pic3.png";
+import profilePic4 from "../images/profile-images/profile-pic4.png";
+import profilePic5 from "../images/profile-images/profile-pic5.png";
+
 export default function ProductPage() {
   const location = useLocation();
   const product = location.state;
   const [show, setShow] = useState(false);
-  console.log(product);
 
   return (
     <div className="flex flex-col justify-center items-center gap-2 w-[60%] p-20">
@@ -78,6 +83,12 @@ CollapsableText.propTypes = {
 };
 
 const Ratings = ({ product }) => {
+  const randomProfilePic = () => {
+    const profilePics = [profilePic1, profilePic2, profilePic3, profilePic4, profilePic5];
+    const randomIndex = Math.floor(Math.random() * profilePics.length);
+    return profilePics[randomIndex];
+  };
+
   const ratings = [
     {
       id: 1,
@@ -151,12 +162,14 @@ const Ratings = ({ product }) => {
             key={rating.id}
             className="flex items-center gap-5 user-review-wrapper  p-4 rounded-xl"
           >
-            <div className="bg-gray-200 rounded-full w-15 h-15"></div>
+            <img src={randomProfilePic()} alt="Profile Picture" className="!w-[80px] !h-[80px]" />
             <div className="flex flex-col gap-2">
               <span className="text-xl font-bold">{rating.userName}</span>
               <div>
                 {/* rating + date wrapper*/}
-                <span>{rating.rating} • </span>
+                <span className="flex items-center gap-1">
+                  <FaStar color="rgb(222, 121, 33)" /> {rating.rating} •{" "}
+                </span>
                 <span>{rating.date}</span>
               </div>
               <p className="text-xl">{rating.comment}</p>

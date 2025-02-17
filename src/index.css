@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /*  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  font-family: "Poppins", sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -111,7 +112,7 @@ img {
 #add-to-cart-all-products-no-stock {
   background-color: rgba(100, 194, 147, 0.938);
   width: 180px;
-  font-size: 1.3rem;
+  font-size: 1.22rem;
   margin-right: auto;
   margin-block: 0;
   transition: 200ms;

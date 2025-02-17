@@ -10,12 +10,20 @@ const AddToWishList = ({ product }) => {
 
   const handleFavoriteBtn = (e) => {
     e.preventDefault();
-    setWishlist([...wishlist, product]);
-    setWishlist((prevProducts) =>
-      prevProducts.map((item) =>
-        item.id === product.id ? { ...item, isFavorite: !item.isFavorite } : item
-      )
-    );
+
+    const favoriteExistsIndex = wishlist.findIndex((item) => item.id === product.id);
+    console.log(favoriteExistsIndex);
+
+    if (favoriteExistsIndex != -1) {
+      setWishlist(wishlist.filter((item) => item.id != product.id));
+    } else {
+      setWishlist([...wishlist, product]);
+      setWishlist((prevProducts) =>
+        prevProducts.map((item) =>
+          item.id === product.id ? { ...item, isFavorite: !item.isFavorite } : item
+        )
+      );
+    }
   };
 
   return (
