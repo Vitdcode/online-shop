@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { FaCartArrowDown, FaLaptop, FaTshirt } from "react-icons/fa";
 import { MdFavorite } from "react-icons/md";
 import { GiDoorRingHandle, GiGemChain, GiLargeDress } from "react-icons/gi";
 import logo from "./images/logo.png";
 import logoText from "./images/logo-text.png";
+import { ThemeContext } from "../ThemeProvider";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -12,6 +13,8 @@ function App() {
   const [cartCount, setCartcount] = useState(0);
   const [cart, setCart] = useState([]);
   const [wishlist, setWishlist] = useState([]);
+
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   const categoriesIcons = {
     electronics: <FaLaptop />,
@@ -21,7 +24,19 @@ function App() {
   };
 
   return (
-    <div className="flex">
+    <div className="flex relative" style={{ backgroundColor: theme === "light" ? "#fff" : "#333" }}>
+      <div
+        className="flex flex-col
+      absolute top-10 right-20 scale-200 items-center  p-2 rounded-2xl"
+        style={{
+          backgroundColor: theme === "light" ? "rgb(245, 245, 244)" : "rgb(27, 52, 82)",
+          color: theme === "light" ? "gray" : "rgb(245, 245, 244)",
+        }}
+      >
+        <h3>{theme} mode</h3>
+        <input type="checkbox" onClick={toggleTheme} />
+      </div>
+
       <div className=" sticky top-0 h-screen flex flex-col justify-between border-r-2 border-gray-200 w-[600px] gap-10 bg-stone-100">
         <div className=" flex flex-col gap-10">
           <div className="!w-full !h-[100px]  bg-lime-100 shadow-2xl  relative">
